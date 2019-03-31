@@ -1,17 +1,17 @@
-import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { AdminAuthGuard } from './services/auth/admin-auth-guard.service';
-import { PersonalOrdersComponent } from './personal-orders/personal-orders.component';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { LoginComponent } from './login/login.component';
-import { OrderSuccessComponent } from './order-success/order-success.component';
-import { CheckOutComponent } from './check-out/check-out.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { ProductsComponent } from './products/products.component';
-import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './services/auth/auth-guard.service';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AdminOrdersComponent } from './admin/components/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
+import { ProductFormComponent } from './admin/components/product-form/product-form.component';
+import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
+import { CheckOutComponent } from './shopping/check-out/check-out.component';
+import { LoginComponent } from './core/components/login/login.component';
+import { OrderSuccessComponent } from './shopping/order-success/order-success.component';
+import { PersonalOrdersComponent } from './shopping/personal-orders/personal-orders.component';
+import { ProductsComponent } from './shopping/products/products.component';
+import { AuthGuard } from './shared/services/auth/auth-guard.service';
+import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: "", component: ProductsComponent },
