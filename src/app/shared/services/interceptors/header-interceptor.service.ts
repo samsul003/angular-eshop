@@ -8,7 +8,7 @@ export class HeaderInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const headerOptions = new HttpHeaders({
-      'Authorization': 'Iron_Man_3.3'
+      'Authorization': 'Iron_Man_3.0'
     });
 
     const authReq = req.clone({

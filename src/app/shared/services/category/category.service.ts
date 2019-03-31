@@ -11,9 +11,9 @@ export class CategoryService {
 
   getAll() {
     const action = query => query.orderByChild("name");
-    const data = this.db.list(
+    const categoriesRef = this.db.list(
       `${this.categoriesPath}`, action).snapshotChanges();
-    return data.pipe(
+    return categoriesRef.pipe(
       map(categories =>
         categories.map(category => {
           const key = category.key;

@@ -9,13 +9,14 @@ export class ProductService {
   constructor(private db: AngularFireDatabase) {}
 
   create(product) {
-    return this.db.list(`${this.productsPath}`).push(product);
+    const productRef = this.db.list(`${this.productsPath}`);
+    return productRef.push(product);
   }
 
   getAll() {
-    const data = this.db.list(
+    const productsRef = this.db.list(
       `${this.productsPath}`).snapshotChanges();
-    return data.pipe(
+    return productsRef.pipe(
       map(products =>
         products.map(product => {
           const key = product.key;
@@ -26,17 +27,17 @@ export class ProductService {
   }
 
   get(productId) {
-    const data = this.db.object(`${this.productsPath}/${productId}`);
-    return data.valueChanges();
+    const productRef = this.db.object(`${this.productsPath}/${productId}`);
+    return productRef.valueChanges();
   }
 
   update(productId, product) {
-    const data = this.db.object(`${this.productsPath}/${productId}`);
-    return data.update(product);
+    const productRef = this.db.object(`${this.productsPath}/${productId}`);
+    return productRef.update(product);
   }
 
   delete(productId) {
-    const data = this.db.object(`${this.productsPath}/${productId}`);
-    return data.remove();
+    const productRef = this.db.object(`${this.productsPath}/${productId}`);
+    return productRef.remove();
   }
 }
