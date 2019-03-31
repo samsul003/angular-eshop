@@ -1,0 +1,56 @@
+<p>
+  <a
+    [routerLink]="['/admin/products']"
+    class="btn btn-light btn-sm">
+    <i class="fa fa-arrow-left"></i> Back
+  </a>
+</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <form #form="ngForm" (ngSubmit)="save(form.value)">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input required #title="ngModel" [(ngModel)]="product.title" name="title" id="title" type="text" class="form-control">
+        <div class="alert alert-danger mt-2" *ngIf="title.touched && title.invalid">
+          Title is required.</div>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">€</span>
+          </div>
+          <input required #price="ngModel" [(ngModel)]="product.price" name="price" id="price" type="number" class="form-control" [min]="0">
+        </div>
+        <div class="alert alert-danger mt-2" *ngIf="price.touched && price.invalid">
+          <div *ngIf="price?.errors.required">Price is required.</div>
+          <div *ngIf="price?.errors.min">Price must be 0 or higher.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select required #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control">
+          <option>Select a category.</option>
+          <option *ngFor="let category of categories" [value]="category.key">
+            {{ category.name }}</option>
+        </select>
+        <div class="alert alert-danger mt-2" *ngIf="category.touched && category.invalid">
+          Category is required.</div>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image Url</label>
+        <input required #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" id="imageUrl" type="text" class="form-control" url>
+        <div class="alert alert-danger mt-2" *ngIf="imageUrl.touched && imageUrl.invalid">
+          <div *ngIf="imageUrl?.errors.required">Image URL is required.</div>
+          <div *ngIf="imageUrl?.errors.url">Please enter a valid URL.</div>
+        </div>
+      </div>
+      <button class="btn btn-primary mr-2" [disabled]="form.invalid">Save</button>
+      <button (click)="delete()" type="button" class="btn btn-danger" [disabled]="form.invalid">Delete</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <product-card [product]="product" [show-actions]="false"></product-card>
+  </div>
+</div>

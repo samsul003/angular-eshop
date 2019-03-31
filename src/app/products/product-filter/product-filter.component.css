@@ -1,0 +1,18 @@
+.sticky-top {
+  top: 70px;
+}
+
+.list-group > .list-group-item {
+  border-radius: 0;
+}
+
+.active.active__custom {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.list-group-item:hover {
+  background-color: rgba(0,0,0,0.05);
+
+  transform: scale(1.01);
+}

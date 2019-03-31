@@ -1,0 +1,48 @@
+<h1 class="card-header">Shopping Cart</h1>
+<ng-container class="row col-10"
+  *ngIf="(basket$ | async) as basket">
+  <p class="card-body">
+    You have <span class="badge badge-warning badge-pill">
+      {{ basket.totalItemsCount }}</span> items in your shopping cart.
+    <button
+      *ngIf="basket.items.length"
+      (click)="clearCart()"
+      class="btn btn-light btn-sm">Clear Cart</button>
+  </p>
+
+  <table class="table table-light table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Product</th>
+        <th class="text-center" style="width: 235px">Quantity</th>
+        <th class="text-right">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of basket.items">
+        <td>
+          <div [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="thumbnail"></div>
+        </td>
+        <td>{{ item.title }}</td>
+        <td>
+          <product-quantity [product]="item" [shopping-cart]="basket">
+          </product-quantity>
+        </td>
+        <td class="text-right">{{ item.totalPrice | currency: 'EUR' }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="text-right font-weight-bold">Total Price: {{ basket.totalPrice | currency: 'EUR' }}</td>
+      </tr>
+    </tfoot>
+  </table>
+  <a
+    *ngIf="basket.items.length"
+    [routerLink]="['/check-out']"
+    class="btn btn-primary card-footer">Checkout Cart</a>
+</ng-container>

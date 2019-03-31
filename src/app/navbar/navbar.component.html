@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <i class="fa fa-leaf"></i> eShop
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarDefault">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item mr-1">
+          <a class="nav-link btn btn-light" [routerLink]="['/shopping-cart']">
+            <i class="fa fa-shopping-cart mr-1"></i>
+            <span class="badge badge-warning badge-pill"
+              *ngIf="(basket$ | async) as basket">{{ basket.totalItemsCount }}
+            </span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <ng-template #anonymousUser>
+          <li class="nav-item">
+            <a class="nav-link btn btn-primary" [routerLink]="['/login']">Login</a>
+          </li>
+        </ng-template>
+        <li *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown">
+            <a ngbDropdownToggle class="nav-link dropdown-toggle caret-off username"
+              id="dropdown01" data-toggle="dropdown">
+              <div [style.backgroundImage]="'url(' + appUser.photoUrl + ')'" class="thumbnail"></div>
+            </a>
+          <div ngbDropdownMenu class="dropdown-menu">
+            <a ngbDropdownItem class="dropdown-item" [routerLink]="['/personal/orders']">
+              Personal Orders
+            </a>
+            <ng-container *ngIf="appUser.isAdmin">
+              <a class="dropdown-item" [routerLink]="['/admin/orders']" routerLinkActive="">Manage Orders</a>
+              <a class="dropdown-item" [routerLink]="['/admin/products']" routerLinkActive="">Manage Products</a>
+            </ng-container>
+            <a (click)="logout()" class="dropdown-item logout">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

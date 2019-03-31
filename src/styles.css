@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+body {
+  padding: 80px;
+  background-color: #f9efef;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Form reset: start */
+.form-control { border-radius: 0; }
+
+.form-control.ng-touched.ng-invalid {
+  border: 1px solid red;
+  border-radius: 0;
+}
+/* Form reset: end */
+
+/* Button reset: start */
+.btn { border-radius: 3%; }
+
+.btn:hover {
+  background-color: #f9efef;
+  border-color: #ffc107;
+  color: grey;
+}
+
+.btn-primary {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-primary:disabled {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-light { background-color: #dce9f6; }
+/* Button reset: end */
+
+/* Pagination reset: start */
+.page-item.active .page-link {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.pagination.float-sm-right { float: none !important; }
+/* Pagination reset: end */
