@@ -49,7 +49,10 @@ body {
 /* Button reset: end */
 
 /* Pagination reset: start */
-.page-item.active .page-link {
+.pagination__footer .pagination {
+  justify-content: center;
+}
+.pagination__footer .page-item.active .page-link {
   background-color: #ffc107;
   border-color: #ffc107;
 }

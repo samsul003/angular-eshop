@@ -1,7 +1,5 @@
 <p>
-  <a
-    [routerLink]="['/admin/products/new']"
-    class="btn btn-light btn-sm">
+  <a [routerLink]="['/admin/products/new']" class="btn btn-light btn-sm">
     <i class="fa fa-plus"></i> Product
   </a>
 </p>
@@ -9,39 +7,47 @@
   <input
     #query
     (keyup)="filter(query.value)"
-    type="text" class="input form-control" placeholder="Search...">
+    type="text"
+    class="input form-control"
+    placeholder="Search..."
+  />
 </div>
 
-<table
-  [mfData]="filteredProducts"
-  #mf="mfDataTable"
-  [mfRowsOnPage]="5"
-  class="table table-light table-hover table-stripped">
-  <thead>
-    <tr>
-      <th><mfDefaultSorter by="title">Title</mfDefaultSorter></th>
-      <th><mfDefaultSorter by="price">Price</mfDefaultSorter></th>
-      <th><mfDefaultSorter by="category">Category</mfDefaultSorter></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of mf.data">
-      <td>{{ item.title }}</td>
-      <td>{{ item.price | currency: 'EUR' }}</td>
-      <td>{{ item.category }}</td>
-      <td>
-        <a [routerLink]="['/admin/products', item.key]">
-          <i class="far fa-edit"></i>
-        </a>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td>
-        <mfBootstrapPaginator></mfBootstrapPaginator>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+<div class="table-responsive table-striped mt-2">
+  <table
+    [mfData]="filteredProducts"
+    #mf="mfDataTable"
+    [mfRowsOnPage]="5"
+    class="table table-light table-bordered table-hover"
+  >
+    <thead>
+      <tr>
+        <th scope="col"><mfDefaultSorter by="title">Title</mfDefaultSorter></th>
+        <th scope="col"><mfDefaultSorter by="price">Price</mfDefaultSorter></th>
+        <th scope="col">
+          <mfDefaultSorter by="category">Category</mfDefaultSorter>
+        </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr scope="row" *ngFor="let item of mf.data">
+        <td>{{ item.title }}</td>
+        <td>{{ item.price | currency: "EUR" }}</td>
+        <td>{{ item.category }}</td>
+        <td>
+          <a [routerLink]="['/admin/products', item.key]">
+            <i class="far fa-edit"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td class="pagination__footer">
+          <mfBootstrapPaginator></mfBootstrapPaginator>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

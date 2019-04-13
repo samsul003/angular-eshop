@@ -1,3 +1,19 @@
-table {
+thead,
+tbody {
+  width: auto;
+  display: block;
+}
+thead tr,
+tbody tr {
   width: 100%;
+  display: flex;
+}
+thead tr th,
+tbody tr td {
+  width: 25%;
+  text-align: left;
+  min-width: 170px;
+}
+tbody tr td:last-child {
+  text-align: center;
 }
